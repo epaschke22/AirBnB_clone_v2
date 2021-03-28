@@ -10,7 +10,7 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dict of all objs in storage or all objs of a class"""
-        if cls == None:
+        if cls is None:
             return FileStorage.__objects
         output = {}
         for key, obj in FileStorage.__objects.items():
@@ -57,7 +57,7 @@ class FileStorage:
 
     def delete(self, obj=None):
         """Deletes objects from the __objects dictionary"""
-        if obj != None:
+        if obj is not None:
             for key, value in FileStorage.__objects.items():
                 if value == obj:
                     FileStorage.__objects.pop(key)
