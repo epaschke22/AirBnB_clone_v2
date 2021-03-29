@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
                 args[i] = args[i].split('=')
                 if len(args[i]) == 2:
                     if args[i][1][0] == '"' and args[i][1][-1] == '"':
-                        args[i][1].replace('_', ' ')
+                        args[i][1] = args[i][1].replace('_', ' ')
                         new.extend(args[i])
                         continue
                     try:
