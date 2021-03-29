@@ -24,3 +24,10 @@ class test_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help create")
             self.assertEqual(answer, f.getvalue().strip())
+
+    def test_create_error(self):
+        """tests error message appear when incorrect create"""
+        answer = "** class doesn't exist **"
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create Potato")
+            self.assertEqual(answer, f.getvalue().strip())
