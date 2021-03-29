@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
             new = []
             new.append(args[0])
             for i in range(1, len(args)):
-                args[i] = args[i].split('=')
+                args[i] = args[i].split('=') # name="Willy"
                 if len(args[i]) == 2:
                     if args[i][1][0] == '\"' and args[i][1][-1] == '\"':
                         new.extend(args[i])
@@ -150,7 +150,10 @@ class HBNBCommand(cmd.Cmd):
                         new.extend(args[i])
                         continue
         new.insert(1, new_instance.id)
-        self.do_update(" ".join(new))
+        while len(new) > 2:
+            self.do_update(" ".join(new)) # Place <id>
+            new.pop(2)
+            new.pop(2)
 
     def help_create(self):
         """ Help information for the create method """
