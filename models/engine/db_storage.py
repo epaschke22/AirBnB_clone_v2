@@ -41,8 +41,10 @@ class DBStorage():
         else:
             queryall += self.__session().query(cls).all()
         output = {}
-        for item in queryall:
-            output[type(item).__name__] = item
+        for alist in queryall:
+            for item in alist:
+                output[type(item).__name__] = item
+        print(output)
         return output
 
     def new(self, obj):

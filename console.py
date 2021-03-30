@@ -153,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
                 self.do_update(" ".join(new))  # Place <id> name "potato"
                 new.pop(2)
                 new.pop(2)
-        storage.save()
+        new_instance.save()
         print(new_instance.id)
 
     def help_create(self):
