@@ -30,21 +30,18 @@ class DBStorage():
         from models.city import City
         from models.amenity import Amenity
         from models.review import Review
-        queryall = []
-        if cls is None:
-            queryall += self.__session().query(User).all()
-            queryall += self.__session().query(Place).all()
-            queryall += self.__session().query(State).all()
-            queryall += self.__session().query(City).all()
-            queryall += self.__session().query(Amenity).all()
-            queryall += self.__session().query(Review).all()
-        else:
-            queryall += self.__session().query(cls).all()
+
+        classlist = [State, City, User, Place, Review, Amenity]
         output = {}
-        for alist in queryall:
-            for item in alist:
-                output[type(item).__name__] = item
-        print(output)
+        if cls is None:
+            for clsname in classlist:
+                queryall = self.__session.query(clsname).all()
+                for obj in queryall:
+                    output["{}.{}".format(type(obj).__name__, obj.id)] = obj
+        else:
+            queryall = self.__session.query(cls).all()
+            for obj in classlist:
+                output["{}.{}".format(type(obj).__name__, obj.id)] = obj
         return output
 
     def new(self, obj):
@@ -71,5 +68,6 @@ class DBStorage():
         from models.review import Review
 
         Base.metadata.create_all(self.__engine)
-        maker = sessionmaker(bind=self.__engine,expire_on_commit=False)
-        self.__session = scoped_session(maker)
+        factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(factory)
+        self.__session = Session()
