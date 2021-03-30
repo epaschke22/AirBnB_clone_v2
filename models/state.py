@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from models.city import City
 from models import storage
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import sessionmaker, relationship
 
 
 class State(BaseModel, Base):
@@ -13,7 +14,7 @@ class State(BaseModel, Base):
     cities = relationship(
         "City",
         cascade="all,delete,delete-orphan",
-        backref="parent"
+        backref="state"
     )
 
     @property
