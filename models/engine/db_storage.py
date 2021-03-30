@@ -32,12 +32,12 @@ class DBStorage():
         from models.review import Review
         queryall = []
         if cls is None:
-            # queryall += self.__session().query(User).all()
-            # queryall += self.__session().query(Place).all()
+            queryall += self.__session().query(User).all()
+            queryall += self.__session().query(Place).all()
             queryall += self.__session().query(State).all()
             queryall += self.__session().query(City).all()
-            # queryall += self.__session().query(Amenity).all()
-            # queryall += self.__session().query(Review).all()
+            queryall += self.__session().query(Amenity).all()
+            queryall += self.__session().query(Review).all()
         else:
             queryall += self.__session().query(cls).all()
         output = {}
@@ -61,12 +61,12 @@ class DBStorage():
     def reload(self):
         """creates tables and session from current database"""
         from models.base_model import Base
-        # from models.user import User
-        # from models.place import Place
+        from models.user import User
+        from models.place import Place
         from models.state import State
         from models.city import City
-        # from models.amenity import Amenity
-        # from models.review import Review
+        from models.amenity import Amenity
+        from models.review import Review
 
         Base.metadata.create_all(self.__engine)
         maker = sessionmaker(bind=self.__engine,expire_on_commit=False)
