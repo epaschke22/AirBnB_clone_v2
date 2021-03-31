@@ -2,10 +2,15 @@
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
 from models.review import Review
-from models.amenity import Amenity
 from sqlalchemy import Column, Integer, Float, String, ForeignKey, Table
 from sqlalchemy.orm import relationship
 
+
+place_amenity = Table(metadata=Base.metadata,
+                      Column('place_id', String(60),
+                             ForeignKey('place.id')),
+                      Column('amenity_id', String(60),
+                             ForeignKey('amenity.id')))
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -25,12 +30,6 @@ class Place(BaseModel, Base):
     reviews = relationship("Review", cascade="all,delete,delete-orphan",
                            backref="place")
 
-    place_amenity = Table(metadata=Base.metadata,
-                          Column('place_id', String(60),
-                                 ForeignKey('place.id')),
-                          Column('amenity_id', String(60),
-                                 ForeignKey('amenity.id')))
-
     @property
     def reviews(self):
         """ getter for filestorage relationship cities states"""
@@ -49,5 +48,6 @@ class Place(BaseModel, Base):
     @amenities.setter
     def amenities(self, obj):
         """amenities setter"""
+        from models.amenity import Amenity
         if obj is type(Amenity):
             self.amenity_ids.append(obj.id)
