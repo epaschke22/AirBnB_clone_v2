@@ -129,21 +129,21 @@ class HBNBCommand(cmd.Cmd):
                 if len(args[i]) == 2:
                     if args[i][1][0] == '"' and args[i][1][-1] == '"':
                         args[i][1] = args[i][1].replace('_', ' ')
-                        setattr(new_instance, args[i][0], args[i][1])
+                        setattr(new_instance, args[i][0], args[i][1][1:-1])
                         continue
                     try:
                         args[i][1] = int(args[i][1])
                     except:
                         pass
                     else:
-                        setattr(new_instance, args[i][0], args[i][1])
+                        setattr(new_instance, args[i][0], args[i][1][1:-1])
                         continue
                     try:
                         args[i][1] = float(args[i][1])
                     except:
                         pass
                     else:
-                        setattr(new_instance, args[i][0], args[i][1])
+                        setattr(new_instance, args[i][0], args[i][1][1:-1])
                         continue
         new_instance.save()
         print(new_instance.id)
