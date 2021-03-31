@@ -10,6 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class DBStorage():
     """This class manages a mysql database with sqlalchemy"""
     __engine = None
