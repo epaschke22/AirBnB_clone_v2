@@ -2,7 +2,6 @@
 """ State Module for HBNB project """
 from models.base_model import BaseModel, Base
 from models.city import City
-from models import storage
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import sessionmaker, relationship
 
@@ -11,15 +10,13 @@ class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
-    cities = relationship(
-        "City",
-        cascade="all,delete,delete-orphan",
-        backref="state"
-    )
+    cities = relationship("City", cascade="all,delete,delete-orphan",
+                          backref="state")
 
     @property
     def cities(self):
         """ getter for filestorage relationship cities states"""
+        from models import storage
         city_list = {}
         for key, obj in storage.all(City):
             if obj.state_id == self.id:

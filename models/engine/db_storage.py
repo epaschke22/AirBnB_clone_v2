@@ -3,6 +3,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class DBStorage():
@@ -24,13 +30,6 @@ class DBStorage():
 
     def all(self, cls=None):
         """calls a query on the whole database"""
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
-
         classlist = [State, City, User, Place, Review, Amenity]
         output = {}
         if cls is None:
@@ -60,13 +59,6 @@ class DBStorage():
     def reload(self):
         """creates tables and session from current database"""
         from models.base_model import Base
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
-
         Base.metadata.create_all(self.__engine)
         factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(factory)

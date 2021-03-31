@@ -2,7 +2,6 @@
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
 from models.review import Review
-from models import storage
 from sqlalchemy import Column, Integer, Float, String, ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -27,6 +26,7 @@ class Place(BaseModel, Base):
     @property
     def reviews(self):
         """ getter for filestorage relationship cities states"""
+        from models import storage
         review_list = {}
         for key, obj in storage.all(Review):
             if obj.state_id == self.id:
