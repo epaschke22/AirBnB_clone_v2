@@ -9,4 +9,4 @@ class Amenity(BaseModel, Base):
     """amenities for places"""
     __tablename__ = 'amenities'
     name = Column(String(128), nullable=False)
-    # place_amenities = relationship("Place", secondary=association_table)
+    place_amenities = relationship("Place", secondary=place_amenity)
