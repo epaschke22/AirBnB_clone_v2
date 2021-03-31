@@ -10,7 +10,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
-
 class DBStorage():
     """This class manages a mysql database with sqlalchemy"""
     __engine = None
@@ -39,7 +38,7 @@ class DBStorage():
                     output["{}.{}".format(type(obj).__name__, obj.id)] = obj
         else:
             queryall = self.__session.query(cls).all()
-            for obj in classlist:
+            for obj in queryall:
                 output["{}.{}".format(type(obj).__name__, obj.id)] = obj
         return output
 

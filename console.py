@@ -136,14 +136,14 @@ class HBNBCommand(cmd.Cmd):
                     except:
                         pass
                     else:
-                        setattr(new_instance, args[i][0], args[i][1][1:-1])
+                        setattr(new_instance, args[i][0], args[i][1])
                         continue
                     try:
                         args[i][1] = float(args[i][1])
                     except:
                         pass
                     else:
-                        setattr(new_instance, args[i][0], args[i][1][1:-1])
+                        setattr(new_instance, args[i][0], args[i][1])
                         continue
         new_instance.save()
         print(new_instance.id)
