@@ -16,6 +16,7 @@ class test_User(test_basemodel):
     def test_first_name(self):
         """ """
         new = self.value()
+        new.first_name = "max"
         self.assertEqual(type(new.first_name), str)
 
     def test_last_name(self):
