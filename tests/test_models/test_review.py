@@ -21,9 +21,11 @@ class test_review(test_basemodel):
     def test_user_id(self):
         """ """
         new = self.value()
+        new.user_id = "this is now an id"
         self.assertEqual(type(new.user_id), str)
 
     def test_text(self):
         """ """
         new = self.value()
+        new.text = "text here"
         self.assertEqual(type(new.text), str)
