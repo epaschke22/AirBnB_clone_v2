@@ -39,7 +39,7 @@ class Place(BaseModel, Base):
         from models import storage
         review_list = {}
         for key, obj in storage.all(Review):
-            if obj.state_id == self.id:
+            if obj.place_id == self.id:
                 review_list[key] = obj
         return review_list
 
