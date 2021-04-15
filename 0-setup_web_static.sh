@@ -12,7 +12,7 @@ sudo printf '%s\n' \
 '    Holberton School' \
 '  </body>' \
 '</html>' \
->> /data/web_static/releases/test/index.html
+| sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data
 new_string="location /hbnb_static { alias /data/web_static/current/; }"
