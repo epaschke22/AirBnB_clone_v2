@@ -15,6 +15,6 @@ sudo printf '%s\n' \
 | sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data
-new_string="location /hbnb_static { alias /data/web_static/current/; }"
+new_string="location /hbnb_static {alias /data/web_static/current/;}"
 sudo sed -i "/listen \[::\]:80 default_server;/a $new_string" /etc/nginx/sites-enabled/default
-service nginx restart
+sudo service nginx restart
