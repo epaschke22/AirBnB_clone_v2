@@ -20,5 +20,5 @@ sudo rm -f /data/web_static/current
 sudo ln -s /data/web_static/releases/test /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data
 new_string="location /hbnb_static {alias /data/web_static/current/;}"
-sudo sed -i "/listen \[::\]:80 default_server;/a $new_string" /etc/nginx/sites-enabled/default
+sudo sed -i "/listen \[::\]:80 default_server;/a $new_string" /etc/nginx/sites-available/default
 sudo service nginx restart
