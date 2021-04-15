@@ -9,3 +9,4 @@ def do_pack():
     now = datetime.now().strftime("%Y%m%d%H%M%S")
     local("mkdir -p versions")
     local("tar -cvzf versions/web_static_{}.tgz web_static".format(now))
+    return "versions/web_static_{}".format(now)
