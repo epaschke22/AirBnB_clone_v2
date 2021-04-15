@@ -7,7 +7,7 @@ env.hosts = ["34.75.67.199", "35.237.13.196"]
 
 def do_deploy(archive_path):
     """deploys archaives to the servers"""
-    if os.path.exists(archive_path) == False:
+    if not os.path.exists(archive_path):
         return False
     try:
         archfile = archive_path.split('/')[-1]
