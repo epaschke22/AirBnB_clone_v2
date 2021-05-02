@@ -16,6 +16,7 @@ def hbnb():
     """returns message with path"""
     return 'HBNB'
 
+
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
     """returns mssage as path argument"""
@@ -39,6 +40,7 @@ def is_it_number(n):
 def number_template(n):
     """returns html template"""
     return render_template('5-number.html', number=n)
+
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def odd_or_even(n):

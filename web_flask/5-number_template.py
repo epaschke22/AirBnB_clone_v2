@@ -16,6 +16,7 @@ def hbnb():
     """returns message with path"""
     return 'HBNB'
 
+
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
     """returns mssage as path argument"""
