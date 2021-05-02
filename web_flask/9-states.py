@@ -29,5 +29,11 @@ def states_id(id=None):
     return render_template('9-states.html', States=all_states, ID=id,
                            Stateobj=foundstate)
 
+
+@app.teardown_appcontext
+def teardown(self):
+    """closes up the storage object"""
+    storage.close()
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
