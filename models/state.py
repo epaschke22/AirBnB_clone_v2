@@ -17,8 +17,8 @@ class State(BaseModel, Base):
     def cities(self):
         """ getter for filestorage relationship cities states"""
         from models import storage
-        city_list = {}
-        for key, obj in storage.all(City):
+        city_list = []
+        for key, obj in storage.all(City).items():
             if obj.state_id == self.id:
-                city_list[key] = obj
+                city_list.append(obj)
         return city_list
