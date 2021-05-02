@@ -13,5 +13,11 @@ def states_list():
     all_states = storage.all(State)
     return render_template('7-states_list.html', States=all_states)
 
+
+@app.teardown_appcontext
+def teardown():
+    """closes up the storage object"""
+    storage.close()
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
