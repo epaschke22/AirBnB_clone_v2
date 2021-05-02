@@ -16,7 +16,7 @@ def cities_by_states():
 
 
 @app.teardown_appcontext
-def teardown():
+def teardown(self):
     """closes up the storage object"""
     storage.close()
 
